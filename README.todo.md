@@ -8,6 +8,7 @@
 
 - Whitelist
 - Blacklist
+- Count threshold
 
 ## Resources
 

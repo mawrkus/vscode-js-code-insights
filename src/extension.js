@@ -1,10 +1,8 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 
-const { logger } = require("./lib/logger");
-const { computeIdentifierDensity } = require('./lib/computeIdentifierDensity');
-const { createMarkdownDocument } = require('./lib/createMarkdownDocument');
+const { logger } = require("./logger");
+const { computeIdentifierDensity } = require('./computeIdentifierDensity');
+const { createMarkdownDocument } = require('./createMarkdownDocument');
 
 /**
  * @param {vscode.ExtensionContext} context

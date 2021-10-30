@@ -12,7 +12,7 @@
   "activationEvents": [
     "onCommand:js-word-counter.computeIdentifierDensity"
   ],
-  "main": "./extension.js",
+  "main": "./src/extension.js",
   "contributes": {
     "commands": [
       {
