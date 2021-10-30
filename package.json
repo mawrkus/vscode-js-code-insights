@@ -1,7 +1,7 @@
 {
   "name": "js-word-counter",
   "displayName": "JS Word Counter",
-  "description": "Compute the word count and density of your JS code",
+  "description": "A VSCode extension to compute identifier density in your JavaScript code",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.61.0"
