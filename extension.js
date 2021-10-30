@@ -16,22 +16,31 @@ function activate(context) {
 	// The command has been defined in the package.json file
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('js-word-counter.computeIdentifierDensity', async () => {
-		if (!vscode.window.activeTextEditor) {
+		const { activeTextEditor } = vscode.window;
+
+		if (!activeTextEditor || !activeTextEditor.document) {
 			return;
 		}
 
-		const { fileName } = vscode.window.activeTextEditor.document;
+		const { languageId, fileName } = activeTextEditor.document;
+
+		if (languageId !== 'javascript') {
+			vscode.window.showWarningMessage(`Cannot compute JS identifier density for "${languageId}" language!`);
+			return;
+		}
 
 		logger.log(`Processing "${fileName}"...`);
 
-		const code = vscode.window.activeTextEditor.document.getText();
+		const code = activeTextEditor.document.getText();
 
 		try {
 			const results = computeIdentifierDensity(code);
 
 			logger.log(`"${fileName}" results →`, results);
 
-			vscode.window.showInformationMessage('JS identifier density computed!');
+			vscode.window.showInformationMessage(`JS identifier density computed (${results.totalCount})!`);
+
+			logger.log('Creating Markdown document...');
 
 			const newDocument = await vscode.workspace.openTextDocument({
 				content: createMarkdownDocument({ fileName, results }),
@@ -39,6 +48,12 @@ function activate(context) {
 			});
 
 			vscode.window.showTextDocument(newDocument);
+
+			logger.log('Opening Markdown preview...');
+
+			await vscode.commands.executeCommand('markdown.showPreviewToSide');
+
+			logger.log('Done!');
 		} catch(error) {
 			logger.error(error);
 			vscode.window.showErrorMessage(`Error while computing JS identifier density: ${error.message}!`);
