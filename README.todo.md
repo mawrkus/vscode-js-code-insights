@@ -1,4 +1,4 @@
-# A Visual Studio extension to count the unique words in the current file
+# A Visual Studio extension to gain some insights about your JavaScript code
 
 ## Motivation
 

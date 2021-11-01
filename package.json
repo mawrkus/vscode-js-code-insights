@@ -1,6 +1,6 @@
 {
-  "name": "js-word-counter",
-  "displayName": "JS Word Counter",
+  "name": "js-code-insights",
+  "displayName": "JS Code Insights",
   "description": "A VSCode extension to compute identifier density in your JavaScript code",
   "version": "0.0.1",
   "engines": {
@@ -10,14 +10,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:js-word-counter.computeIdentifierDensity"
+    "onCommand:js-code-insights.computeIdentifierDensity"
   ],
   "main": "./src/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "js-word-counter.computeIdentifierDensity",
-        "title": "Compute JS Identifier Density"
+        "command": "js-code-insights.computeIdentifierDensity",
+        "title": "Code Insights: Compute Identifier Density"
       }
     ]
   },

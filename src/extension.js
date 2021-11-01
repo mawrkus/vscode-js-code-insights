@@ -13,7 +13,7 @@ function activate(context) {
 
 	// The command has been defined in the package.json file
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('js-word-counter.computeIdentifierDensity', async () => {
+	let disposable = vscode.commands.registerCommand('js-code-insights.computeIdentifierDensity', async () => {
 		const { activeTextEditor } = vscode.window;
 
 		if (!activeTextEditor || !activeTextEditor.document) {
@@ -23,7 +23,7 @@ function activate(context) {
 		const { languageId, fileName } = activeTextEditor.document;
 
 		if (languageId !== 'javascript') {
-			vscode.window.showWarningMessage(`Cannot compute JS identifier density for "${languageId}" language!`);
+			vscode.window.showWarningMessage(`Cannot compute JS identifier density for the "${languageId}" language!`);
 			return;
 		}
 

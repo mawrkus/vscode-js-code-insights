@@ -9,10 +9,10 @@ exports.createMarkdownDocument = ({ fileName, results }) => {
 
 ### Identifier density
 
-| Name | Density (%) | Count |
-| ---  | ---           | ---   |
+| Name | Density (%) | Count | Context |
+| ---  | ---         | ---   | ---     |
 ${frequencies
-		.map(([name, f, count]) => `| ${name} | ${(Math.round(f * 100) / 100).toFixed(2)} | ${count} |`)
+		.map(([name, count, f, context]) => `| ${name} | ${(Math.round(f * 100) / 100).toFixed(2)} | ${count} | ${context.join(', ')} |`)
 		.join('\n')
 };
 	`;

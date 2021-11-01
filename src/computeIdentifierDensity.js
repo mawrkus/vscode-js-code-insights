@@ -11,12 +11,12 @@ const parseOptions = {
   ],
 };
 
-function sortFn([, countA], [, countB]) {
-  if (countA < countB) {
+function sortFn([, dataA], [, dataB]) {
+  if (dataA.count < dataB.count) {
     return +1;
   }
 
-  if (countA > countB) {
+  if (dataA.count > dataB.count) {
     return -1;
   }
 
@@ -30,16 +30,27 @@ exports.computeIdentifierDensity = (code) => {
   const countMap = new Map();
 
   const visitor = {
-    Identifier({ node }) {
+    Identifier(path) {
+      const { node, parentPath } = path;
+
       totalCount += 1;
-      countMap.set(node.name, countMap.has(node.name) ? countMap.get(node.name) + 1 : 1);
+
+      const identifierData = countMap.has(node.name)
+        ? countMap.get(node.name)
+        : { count: 0, context: new Set() };
+
+      identifierData.count += 1;
+      identifierData.context.add(parentPath.node.type);
+
+      countMap.set(node.name, identifierData);
     },
   };
 
   traverse(parsed, visitor);
 
-  const counts = Array.from(countMap).sort(sortFn);
-  const frequencies = counts.map(([name, count]) => [name, (count * 100) / totalCount, count]);
+  const frequencies = Array.from(countMap)
+    .sort(sortFn)
+    .map(([name, data]) => [name, data.count, (data.count * 100) / totalCount, Array.from(data.context)]);
 
   return {
     totalCount,
