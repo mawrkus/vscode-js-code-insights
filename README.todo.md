@@ -1,4 +1,6 @@
-# A Visual Studio extension to gain some insights about your JavaScript code
+# JS Code Insights
+
+A Visual Studio extension to gain insights into your JavaScript code.
 
 ## Motivation
 

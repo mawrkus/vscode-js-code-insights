@@ -1,7 +1,7 @@
 {
   "name": "js-code-insights",
   "displayName": "JS Code Insights",
-  "description": "A VSCode extension to compute identifier density in your JavaScript code",
+  "description": "A Visual Studio extension to gain insights into your JavaScript code",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.61.0"
