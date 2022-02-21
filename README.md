@@ -1,4 +1,4 @@
-# 💡 JS Code Insights
+# 💡 JS Code Insights for VSCode
 
 A [Visual Studio Code](https://code.visualstudio.com/) extension to gain insights into your JavaScript code.
 
