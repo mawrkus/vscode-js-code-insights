@@ -13,7 +13,7 @@ function activate(context) {
 
 	// The command has been defined in the package.json file
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('js-code-insights.computeIdentifierDensity', async () => {
+	const disposable = vscode.commands.registerCommand('js-code-insights.computeIdentifierDensity', async () => {
 		const { activeTextEditor } = vscode.window;
 
 		if (!activeTextEditor || !activeTextEditor.document) {
@@ -22,8 +22,8 @@ function activate(context) {
 
 		const { languageId, fileName } = activeTextEditor.document;
 
-		if (languageId !== 'javascript') {
-			vscode.window.showWarningMessage(`Cannot compute JS identifier density for the "${languageId}" language!`);
+		if (!['javascript', 'javascriptreact'].includes(languageId)) {
+			vscode.window.showWarningMessage(`JS Code Insights - Language "${languageId}" not supported.`);
 			return;
 		}
 
@@ -32,16 +32,16 @@ function activate(context) {
 		const code = activeTextEditor.document.getText();
 
 		try {
-			const results = computeIdentifierDensity(code);
+			const results = computeIdentifierDensity({ code, languageId });
 
 			logger.log(`"${fileName}" results →`, results);
 
-			vscode.window.showInformationMessage(`JS identifier density computed (${results.totalCount})!`);
+			vscode.window.showInformationMessage('JS Code Insights - Identifier density computed.');
 
 			logger.log('Creating Markdown document...');
 
 			const newDocument = await vscode.workspace.openTextDocument({
-				content: createMarkdownDocument({ fileName, results }),
+				content: createMarkdownDocument({ fileName, results, languageId }),
 				language: 'markdown',
 			});
 
@@ -54,7 +54,7 @@ function activate(context) {
 			logger.log('Done!');
 		} catch(error) {
 			logger.error(error);
-			vscode.window.showErrorMessage(`Error while computing JS identifier density: ${error.message}!`);
+			vscode.window.showErrorMessage(`JS Code Insights - Error while computing identifier density: ${error.message}!`);
 		}
 	});
 

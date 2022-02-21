@@ -1,15 +1,6 @@
 const { parse } = require('@babel/parser');
 const { default: traverse } = require('@babel/traverse');
-
-const parseOptions = {
-  sourceType: 'module',
-  plugins: [
-    'jsx',
-    'classProperties',
-    'nullishCoalescingOperator',
-    'optionalChaining',
-  ],
-};
+const { languages } = require('./languages');
 
 function sortFn([, dataA], [, dataB]) {
   if (dataA.count < dataB.count) {
@@ -23,8 +14,9 @@ function sortFn([, dataA], [, dataB]) {
   return 0;
 }
 
-exports.computeIdentifierDensity = (code) => {
-  const parsed = parse(code, parseOptions);
+exports.computeIdentifierDensity = ({ code, languageId }) => {
+  const options = languages[languageId].parseOptions;
+  const parsed = parse(code, options);
 
   let totalCount = 0;
   const countMap = new Map();

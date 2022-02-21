@@ -1,11 +1,14 @@
-exports.createMarkdownDocument = ({ fileName, results }) => {
+const { languages } = require('./languages');
+
+exports.createMarkdownDocument = ({ fileName, results, languageId }) => {
 	const {  totalCount, frequencies } = results;
 
 	return `
-## 🧮 JS identifiers analysis
+## 💡 JS identifiers analysis
 
 - File → [${fileName}](${fileName})
-- Total number of identifiers → ${totalCount}
+- Language → ${languages[languageId].name}
+- Number of identifiers → ${totalCount}
 
 ### Identifier density
 
