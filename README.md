@@ -1,65 +1,50 @@
-# js-word-counter README
+# 💡 JS Code Insights for VSCode
 
-This is the README for your extension "js-word-counter". After writing up a brief description, we recommend including the following sections.
+A [Visual Studio Code](https://code.visualstudio.com/) extension to gain insights into your JavaScript code.
 
-## Features
+## Usage
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+⚠️ It is not yet published on the VSCode extension marketplace.
 
-For example if there is an image subfolder under your extension project workspace:
+To use it:
 
-\!\[feature X\]\(images/feature-x.png\)
+- Clone the project: `git clone https://github.com/mawrkus/vscode-js-code-insights.git`
+- Open the cloned folder in VSCode `cd vscode-js-code-insights && code .`
+- Press `F5` to open a new window with your extension loaded
+- Open any JavaScript or React file
+- Run the command from the command palette by pressing (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) and typing `JS Code Insights`.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Available insights
 
-## Requirements
+### Identifier analysis
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Computes the identifier density of your JavaScript/React files and display them in a Markdown table report:
 
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+![Demo video](./docs/demo.gif)
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+[Have a look at our CHANGELOG](./CHANGELOG.md) to get the details of all changes between versions.
 
-### 1.0.0
+### Versioning
 
-Initial release of ...
+We follow [SemVer](https://semver.org/) convention for versionning.
 
-### 1.0.1
+That means our releases use the following format:
 
-Fixed issue #.
+```
+<major>.<minor>.<patch>
+```
 
-### 1.1.0
+- Breaking changes bump `<major>` (and reset `<minor>` & `<patch>`)
+- Backward compatible changes bump `<minor>` (and reset `<patch>`)
+- Bug fixes bump `<patch>`
 
-Added features X, Y, and Z.
+## Contributing
 
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- Fork, clone
+- Create your feature branch: `git checkout -b feature/my-new-feature`
+- Commit your changes: `git commit -am 'feat(MyNewFeature): Added my new feature'` (the project uses [conventional commits with a scope](https://www.conventionalcommits.org/en/v1.0.0-beta.4/#commit-message-with-scope))
+- Check the test: `npm run test`
+- Push to the branch: `git push origin my-new-feature`
+- Submit a pull request :D
